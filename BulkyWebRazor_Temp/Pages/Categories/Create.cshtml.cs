@@ -23,6 +23,8 @@ namespace BulkyWebRazor_Temp.Pages.Categories
         {
             _db.Categories.Add(obj);
             _db.SaveChanges();
+            //Temp Data is for rendering notification on next page
+            TempData["Success"] = "Category Created Successfully!!";
             return RedirectToPage("Index");
         }
     }

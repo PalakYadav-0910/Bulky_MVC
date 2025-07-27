@@ -29,6 +29,8 @@ namespace BulkyWebRazor_Temp.Pages.Categories
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                //Temp Data is for rendering notification on next page
+                TempData["Success"] = "Category Updated Successfully!!";
                 return RedirectToPage("Index");
             }
             return Page();
