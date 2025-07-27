@@ -39,6 +39,7 @@ namespace BulkyWeb.Controllers
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -64,20 +65,11 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Edit(Category obj)
         {
-            //Adding Custom Validation
-            if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("Name", "The Display Order cannot exactly match the Name");
-            }
-            if (obj.Name != null && obj.Name.ToLower() == "test")
-            {
-                //Not Bind to any property, Key=empty string
-                ModelState.AddModelError("", "Test is an invalid value");
-            }
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
+                _db.Categories.Update(obj);
                 _db.SaveChanges();
+                return RedirectToAction("Index");
             }
             return View();
         }
